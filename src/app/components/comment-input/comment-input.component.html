@@ -1,4 +1,4 @@
 <div class="message-input">
-  <textarea [(ngModel)]="comment" placeholder="Type a message..."></textarea>
+  <textarea [(ngModel)]="comment" (ngModelChange)="onInputChange()" placeholder="Type a message..."></textarea>
   <button (click)="submitComment()">Send</button>
 </div>

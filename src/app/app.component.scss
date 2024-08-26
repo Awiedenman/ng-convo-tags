@@ -1,0 +1,25 @@
+body {
+  margin: 0px;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  border-top: #000 5px solid;
+
+}
+
+.left-side {
+  display: inline-block;
+  border-right: #000 5px solid;
+  width: 15%;
+  max-width: 200px;
+  height: 100vh;
+}
+
+.right-side {
+  display: inline-block;
+  background-color: rgba(153, 50, 204, 0.957);
+  width: 85%;
+  height: 100vh;
+}

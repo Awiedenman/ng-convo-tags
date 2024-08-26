@@ -6,20 +6,7 @@ import { Comment } from '../models/comment.model';
 })
 
 export class ConversationService {
-  private comments: Comment[] = [
-    {
-      id: 1,
-      userId: 2,
-      timestamp: new Date(),
-      text: 'Are you still on?',
-    },
-    {
-      id: 2,
-      userId: 1,
-      timestamp: new Date(),
-      text: 'Yeah, I am still working, whats up?',
-    },
-  ];
+  private comments: Comment[] = [];
 
   getComments(): Comment[] {
     return this.comments;

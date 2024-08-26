@@ -1,1 +1,7 @@
-<p>conversation works!</p>
+<div class="conversation-container">
+  <ul class="comments">
+    <li *ngFor="let comment of comments" class="comment">
+      {{ comment.text }}
+    </li>
+  </ul>
+</div>

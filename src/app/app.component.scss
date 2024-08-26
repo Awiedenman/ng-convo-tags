@@ -1,25 +1,33 @@
 body {
-  margin: 0px;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-top: 0;
 }
 
-main {
-  width: 100%;
+:host {
   display: flex;
-  border-top: #000 5px solid;
+  margin: 0;
+  flex-direction: column;
+  overflow: hidden;
 
-}
+  main {
+    display: flex;
+    border-top: #000 5px solid;
+    height: 90vh;
 
-.left-side {
-  display: inline-block;
-  border-right: #000 5px solid;
-  width: 15%;
-  max-width: 200px;
-  height: 100vh;
-}
+    .left-side {
+      display: inline-block;
+      border-right: #000 5px solid;
+      width: 15%;
+    }
 
-.right-side {
-  display: inline-block;
-  background-color: rgba(153, 50, 204, 0.957);
-  width: 85%;
-  height: 100vh;
+    .right-side {
+      display: flex;
+      position: relative;
+      flex-direction: column;
+      width: 100%;
+      flex: 1;
+    }
+  }
 }

@@ -1,0 +1,28 @@
+:host {
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+
+  .conversation-container {
+    display: flex;
+    background-color: #fff;
+    width: 100%;
+    // padding: 2rem;
+    flex-direction: column;
+
+    >ul {
+      display: flex;
+      flex-direction: column;
+      padding: unset;
+      overflow-y: scroll;
+      max-height: 75vh;
+      flex-grow: 1;
+    }
+
+    .comment {
+      padding: 1rem 0;
+      border-top: #000 solid 1px;
+      list-style: none;
+    }
+  }
+}

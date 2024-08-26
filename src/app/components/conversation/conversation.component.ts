@@ -21,7 +21,6 @@ export class ConversationComponent implements OnInit {
   }
 
   onCommentSubmitted(comment: string): void {
-    console.log('1', comment)
     const newComment: Comment = {
       id: 2, //! use conversation service to return us the previous length of comments array and += 1;
       userId: 6, //! use the User service to return this value;

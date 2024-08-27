@@ -15,6 +15,7 @@ export class CommentInputComponent {
   @Output() inputFocus = new EventEmitter<boolean>();
   commentControl = new FormControl('');
 
+  // May still need this
   // submitComment(event: MouseEvent): void {
   //   if(this.commentControl !== null){
   //     this.commentEvent.emit(this.commentControl);
@@ -31,10 +32,6 @@ export class CommentInputComponent {
     } else {
       this.mentionEvent.emit(value);
     }
-  }
-
-  onBlur() {
-    this.inputFocus.emit(false);
   }
 
   onFocus() {

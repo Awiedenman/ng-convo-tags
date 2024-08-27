@@ -15,12 +15,6 @@ export class UserPopupComponent {
   @Output() closePopupEvent = new EventEmitter<void>();
   @Output() userSelected = new EventEmitter<User>();
 
-  onOutsideClick(event: MouseEvent) {
-    if ((event.target as HTMLElement).classList.contains('popup')) {
-      this.closePopupEvent.emit();
-    }
-  }
-
   selectUser(user: User) {
     this.userSelected.emit(user);
     this.closePopupEvent.emit();

@@ -50,6 +50,12 @@ export class ConversationComponent implements OnInit {
     }
   }
 
+  onClickOutside(event: Event) {
+    console.log('event', event)
+    if (!['popup', 'user-list', 'user-item', 'message-input'].some(className => (event.target as HTMLElement).classList.contains(className)))
+      this.closeUserPopup();
+  }
+
   filterUsers(query: string) {
     const matchQueryPrefixList = query.split(' ').filter((word) => {
       return word.charAt(0).toLowerCase() === '@';  // does any word start with @;

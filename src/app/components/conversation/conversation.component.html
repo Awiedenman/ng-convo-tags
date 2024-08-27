@@ -1,4 +1,4 @@
-<div class="conversation-container">
+<div class="conversation-container" (click)="onClickOutside($event)">
   <ul class="comments">
     <li *ngFor="let comment of comments" class="comment">
       {{ comment.text }}

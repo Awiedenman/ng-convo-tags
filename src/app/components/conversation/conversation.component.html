@@ -6,5 +6,6 @@
   </ul>
   <app-user-popup [isOpen]="showUserPopup" (closePopupEvent)="closeUserPopup()">
   </app-user-popup>
-  <app-comment-input (commentEvent)="addComment($event)" (inputFocus)="handleInputFocus($event)" />
+  <app-comment-input (commentEvent)="addComment($event)" (mentionEvent)="filterUsers($event)"
+    (inputFocus)="handleInputFocus($event)" />
 </div>

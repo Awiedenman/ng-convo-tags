@@ -36,6 +36,7 @@ export class ConversationComponent implements OnInit {
 
     this.conversationService.createComment(newComment); // Add new comment to state in service;
     this.comments = this.conversationService.getComments(); // Update the comments array;
+    this.closeUserPopup();
   }
 
   closeUserPopup() {
@@ -45,6 +46,13 @@ export class ConversationComponent implements OnInit {
   handleInputFocus(focused: boolean) {
     if (!focused) {
       this.showUserPopup = false;
+    }
+  }
+
+  filterUsers(query: string) {
+    console.log('query:: ', query)
+    if (query.includes('@')) { //! logic need attention;
+      this.showUserPopup = true;
     }
   }
 

@@ -11,6 +11,7 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 })
 export class CommentInputComponent {
   @Output() commentEvent = new EventEmitter<string>();
+  @Output() mentionEvent = new EventEmitter<string>();
   @Output() inputFocus = new EventEmitter<boolean>();
   commentControl = new FormControl('');
 
@@ -22,7 +23,10 @@ export class CommentInputComponent {
 
   onKeyup(event: KeyboardEvent) {
     const value = (event.target as HTMLInputElement).value;
-    if (event.key === 'Enter') {
+    if (event.key === '@') { // will need to chcek every word, not just does it include;
+      // split this string up by space and check the 0 index. ( or something like that )
+      this.mentionEvent.emit(value);
+    } else if (event.key === 'Enter') {
       this.commentEvent.emit(value);
       this.commentControl.setValue('');
     }

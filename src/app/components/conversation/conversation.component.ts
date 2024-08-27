@@ -17,13 +17,14 @@ import { UserPopupComponent } from '../user-popup/user-popup.component';
 export class ConversationComponent implements OnInit {
   comments: Comment[] = [];
   showUserPopup = false;
-  // users: User[] = []
+  users: User[] = []
+  filteredUsers: User[] = []
 
   constructor(private conversationService: ConversationService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.comments = this.conversationService.getComments();
-    // this.users = this.userService.getUsers();
+    this.users = this.userService.getUsers();
   }
 
   addComment(comment: string): void {
@@ -50,10 +51,25 @@ export class ConversationComponent implements OnInit {
   }
 
   filterUsers(query: string) {
-    console.log('query:: ', query)
-    if (query.includes('@')) { //! logic need attention;
+    const matchQueryPrefixList = query.split(' ').filter((word) => {
+      return word.charAt(0).toLowerCase() === '@';  // does any word start with @;
+    })
+    const sanitizedQueryList = matchQueryPrefixList.map((match => {
+      return match.slice(1).toLowerCase(); // strip out @ for matching purposes;
+    }))
+
+    if (matchQueryPrefixList.length) {
       this.showUserPopup = true;
+      this.filteredUsers = this.users.filter((user: User) => {
+        console.log('sanitizedQueryList', sanitizedQueryList)
+        if (sanitizedQueryList.some((query) => user.name.toLowerCase().includes(query.toLowerCase()))) {
+          return user;
+        }
+        return;
+
+      })
+    } else {
+      this.showUserPopup = false;
     }
   }
-
 };

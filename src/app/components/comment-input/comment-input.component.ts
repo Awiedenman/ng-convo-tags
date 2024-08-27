@@ -23,12 +23,13 @@ export class CommentInputComponent {
 
   onKeyup(event: KeyboardEvent) {
     const value = (event.target as HTMLInputElement).value;
-    if (event.key === '@') { // will need to chcek every word, not just does it include;
-      // split this string up by space and check the 0 index. ( or something like that )
+    if (event.key === '@') { // Fire anytime it detects the symbol and filtering happens at parent so it can be passed to popup.
       this.mentionEvent.emit(value);
     } else if (event.key === 'Enter') {
       this.commentEvent.emit(value);
       this.commentControl.setValue('');
+    } else {
+      this.mentionEvent.emit(value);
     }
   }
 

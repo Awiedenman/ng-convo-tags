@@ -1,7 +1,7 @@
 <div class="popup" *ngIf="isOpen" (click)="onOutsideClick($event)">
   <ul class="user-list">
     <li class="user-item" *ngFor="let user of filteredUsers" (click)="selectUser(user)">
-      {{ user }}
+      {{ "@" + user.name }}
     </li>
   </ul>
 </div>

@@ -4,7 +4,7 @@
       {{ comment.text }}
     </li>
   </ul>
-  <app-user-popup [isOpen]="showUserPopup" (closePopupEvent)="closeUserPopup()">
+  <app-user-popup [isOpen]="showUserPopup" [filteredUsers]=filteredUsers (closePopupEvent)="closeUserPopup()">
   </app-user-popup>
   <app-comment-input (commentEvent)="addComment($event)" (mentionEvent)="filterUsers($event)"
     (inputFocus)="handleInputFocus($event)" />

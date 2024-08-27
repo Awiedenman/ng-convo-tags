@@ -19,6 +19,12 @@ export class ConversationComponent implements OnInit {
   showUserPopup = false;
   users: User[] = []
   filteredUsers: User[] = []
+  taggedUser: User = {
+    name: '',
+    id: null,
+    taggedConversationIds: []
+
+  };
 
   constructor(private conversationService: ConversationService, private userService: UserService) { }
 
@@ -51,7 +57,6 @@ export class ConversationComponent implements OnInit {
   }
 
   onClickOutside(event: Event) {
-    console.log('event', event)
     if (!['popup', 'user-list', 'user-item', 'message-input'].some(className => (event.target as HTMLElement).classList.contains(className)))
       this.closeUserPopup();
   }
@@ -67,7 +72,6 @@ export class ConversationComponent implements OnInit {
     if (matchQueryPrefixList.length) {
       this.showUserPopup = true;
       this.filteredUsers = this.users.filter((user: User) => {
-        console.log('sanitizedQueryList', sanitizedQueryList)
         if (sanitizedQueryList.some((query) => user.name.toLowerCase().includes(query.toLowerCase()))) {
           return user;
         }
@@ -77,5 +81,9 @@ export class ConversationComponent implements OnInit {
     } else {
       this.showUserPopup = false;
     }
+  }
+
+  handleInsertUserOnClick(user: User) {
+    if (this.taggedUser) { console.log('insert' + user.name + 'here') }
   }
 };

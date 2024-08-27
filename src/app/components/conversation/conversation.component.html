@@ -4,8 +4,9 @@
       {{ comment.text }}
     </li>
   </ul>
-  <app-user-popup [isOpen]="showUserPopup" [filteredUsers]=filteredUsers (closePopupEvent)="closeUserPopup()">
+  <app-user-popup (userSelected)="handleInsertUserOnClick($event)" [isOpen]="showUserPopup"
+    [filteredUsers]=filteredUsers (closePopupEvent)="closeUserPopup()">
   </app-user-popup>
-  <app-comment-input (commentEvent)="addComment($event)" (mentionEvent)="filterUsers($event)"
+  <app-comment-input [taggedUser]="taggedUser" (commentEvent)="addComment($event)" (mentionEvent)="filterUsers($event)"
     (inputFocus)="handleInputFocus($event)" />
 </div>

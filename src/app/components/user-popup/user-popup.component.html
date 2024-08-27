@@ -1,6 +1,6 @@
 <div class="popup" *ngIf="isOpen">
   <ul class="user-list">
-    <li class="user-item" *ngFor="let user of filteredUsers" (click)="selectUser(user)">
+    <li class="user-item" *ngFor="let user of filteredUsers" (click)="selectUser($event, user)">
       {{ "@" + user.name }}
     </li>
   </ul>

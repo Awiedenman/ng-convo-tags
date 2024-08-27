@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { User } from '../../shared/models/user.model';
 
 @Component({
   selector: 'app-comment-input',
@@ -13,6 +14,7 @@ export class CommentInputComponent {
   @Output() commentEvent = new EventEmitter<string>();
   @Output() mentionEvent = new EventEmitter<string>();
   @Output() inputFocus = new EventEmitter<boolean>();
+  @Input() taggedUser = {}
   commentControl = new FormControl('');
 
   // May still need this
@@ -37,4 +39,9 @@ export class CommentInputComponent {
   onFocus() {
     this.inputFocus.emit(true);
   }
+
+  insertTagName() {
+    console.log('userToBeInserted:: ', this.taggedUser)
+  }
+
 };

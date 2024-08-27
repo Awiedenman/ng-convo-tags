@@ -15,8 +15,10 @@ export class UserPopupComponent {
   @Output() closePopupEvent = new EventEmitter<void>();
   @Output() userSelected = new EventEmitter<User>();
 
-  selectUser(user: User) {
-    this.userSelected.emit(user);
+  selectUser(event: Event, user: User) {
     this.closePopupEvent.emit();
+    if ((event.target as HTMLElement).classList.contains('user-item')) {
+      this.userSelected.emit(user);
+    }
   }
 }

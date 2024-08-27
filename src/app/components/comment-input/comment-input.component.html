@@ -1,5 +1,5 @@
-<div class="message-input">
-  <input type="text" [formControl]="commentControl" (keyup)="onKeyup($event)" placeholder="Type your message..."
-    (blur)="onBlur()" (focus)="onFocus()" />
+<div class="message-input-container">
+  <input class="message-input" type="text" [formControl]="commentControl" (keyup)="onKeyup($event)"
+    placeholder="Type your message..." (click)="onClickOutside($event)" (focus)="onFocus()" />
   <!-- <button (click)="submitComment()">Send</button> -->
 </div>

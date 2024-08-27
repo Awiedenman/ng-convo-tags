@@ -1,28 +1,38 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-comment-input',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './comment-input.component.html',
   styleUrl: './comment-input.component.scss'
 })
 export class CommentInputComponent {
-  @Output() commentSubmitted = new EventEmitter<string>();
-  comment: string = '';
+  @Output() commentEvent = new EventEmitter<string>();
+  @Output() inputFocus = new EventEmitter<boolean>();
+  commentControl = new FormControl('');
 
-  submitComment(): void {
-    if (typeof this.comment.trim() === 'string') { // null check and type check;
-      this.commentSubmitted.emit(this.comment);
-      this.comment = '';
-    };
-  };
-  onInputChange(): void {
-    const symbolTriggerPresent = this.comment.match(/^@/)
-    if (symbolTriggerPresent) {
-      console.log('show user list')
-    };
-  };
+  // submitComment(event: MouseEvent): void {
+  //   if(this.commentControl !== null){
+  //     this.commentEvent.emit(this.commentControl);
+  //   }
+  // };
+
+  onKeyup(event: KeyboardEvent) {
+    const value = (event.target as HTMLInputElement).value;
+    if (event.key === 'Enter') {
+      this.commentEvent.emit(value);
+      this.commentControl.setValue('');
+    }
+  }
+
+  onBlur() {
+    this.inputFocus.emit(false);
+  }
+
+  onFocus() {
+    this.inputFocus.emit(true);
+  }
 };

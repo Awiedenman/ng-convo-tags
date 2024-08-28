@@ -66,14 +66,20 @@ export class ConversationComponent implements OnInit {
   }
 
   filterUsers(query: string) {
-    const matchQueryPrefixList = query.split(' ').filter((word) => {
+    const splitQuery = query.split(' ');
+    const lastword = splitQuery[splitQuery.length - 1];
+    const matchQueryPrefixList = splitQuery.filter((word) => {
       return word.charAt(0).toLowerCase() === '@';  // does any word start with @;
     })
     const sanitizedQueryList = matchQueryPrefixList.map((match => {
       return match.slice(1).toLowerCase(); // strip out @ for matching purposes;
     }))
+    console.log('lastword::', lastword.includes('@'));
+    console.log('matchQueryPrefixList', matchQueryPrefixList.length);
 
-    if (matchQueryPrefixList.length) {
+    if (matchQueryPrefixList.length >= 1 && lastword.includes('@')) {
+      console.log('Input with @ detected:', lastword);
+
       this.showUserPopup = true;
       this.filteredUsers = this.users.filter((user: User) => {
         if (sanitizedQueryList.some((query) => user.name.toLowerCase().includes(query.toLowerCase()))) {
@@ -88,6 +94,8 @@ export class ConversationComponent implements OnInit {
   }
 
   handleInsertUserOnClick(user: User) {
-    this.taggedUser = user
+    this.taggedUser = user;
+    this.filterUsers('')
+    this.showUserPopup = false;
   }
 };

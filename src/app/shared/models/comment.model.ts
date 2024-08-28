@@ -3,5 +3,6 @@ export interface Comment {
   userId: number;
   recipient: number;
   timestamp: Date;
+  displayTime: string;
   text: string;
 }

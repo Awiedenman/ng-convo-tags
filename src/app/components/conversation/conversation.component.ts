@@ -34,18 +34,30 @@ export class ConversationComponent implements OnInit {
     this.users = this.userService.getUsers();
   }
 
+  convertDateTime(timestamp: Date) {
+    let hours = timestamp.getHours()
+    const minutes = timestamp.getMinutes()
+
+    const amOrPm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12 || 12;
+
+    return `${hours}:${minutes} ${amOrPm}`
+  }
+
   addComment(comment: string): void {
+    const timestamp = new Date();
     const newComment: Comment = {
-      id: 2, //! use conversation service to return us the previous length of comments array and += 1;
-      userId: 6, //! use the User service to return this value;
+      id: this.conversationService.getComments.length + 1,
+      userId: 6, // hard coded bc as of now it is only me that can input comments/
       recipient: 2,
-      timestamp: new Date(),
+      timestamp: timestamp,
+      displayTime: this.convertDateTime(timestamp),
       text: comment,
     };
 
-    this.conversationService.createComment(newComment); // Add new comment to state in service;
-    this.comments = this.conversationService.getComments(); // Update the comments array;
-    // make api call to add this converstaion ID to the users array of tagged conversations
+    this.conversationService.createComment(newComment);
+    this.comments = this.conversationService.getComments();
+    // would make api call to add this converstaion ID to the users array of tagged conversations
     this.notificationService.sendNotifcation(newComment)
     this.closeUserPopup();
   }
@@ -69,13 +81,11 @@ export class ConversationComponent implements OnInit {
     const splitQuery = query.split(' ');
     const lastword = splitQuery[splitQuery.length - 1];
     const matchQueryPrefixList = splitQuery.filter((word) => {
-      return word.charAt(0).toLowerCase() === '@';  // does any word start with @;
+      return word.charAt(0).toLowerCase() === '@';
     })
     const sanitizedQueryList = matchQueryPrefixList.map((match => {
-      return match.slice(1).toLowerCase(); // strip out @ for matching purposes;
+      return match.slice(1).toLowerCase();
     }))
-    console.log('lastword::', lastword.includes('@'));
-    console.log('matchQueryPrefixList', matchQueryPrefixList.length);
 
     if (matchQueryPrefixList.length >= 1 && lastword.includes('@')) {
       console.log('Input with @ detected:', lastword);

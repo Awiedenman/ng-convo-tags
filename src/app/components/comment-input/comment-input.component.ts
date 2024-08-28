@@ -2,6 +2,7 @@ import { Component, ElementRef, EventEmitter, Input, Output, SimpleChanges, View
 import { CommonModule } from '@angular/common';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { User } from '../../shared/models/user.model';
+import { UserService } from '../../shared/services/user.service';
 
 @Component({
   selector: 'app-comment-input',
@@ -21,35 +22,31 @@ export class CommentInputComponent {
     taggedConversationIds: []
   };
   @ViewChild('commentInput') commentInput!: ElementRef<HTMLInputElement>;
-
   commentControl = new FormControl('');
 
-  // May still need this
-  // submitComment(event: MouseEvent): void {
-  //   if(this.commentControl !== null){
-  //     this.commentEvent.emit(this.commentControl);
-  //   }
-  // };
+  constructor(private userService: UserService) { }
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes['taggedUser']) this.insertTagName(this.taggedUser)
   }
 
-  addComment(value: string) {
+  sendCommentEvent(value: string) {
+    const users = this.userService.getUsers();
     this.commentEvent.emit(value);
     this.commentControl.setValue('');
   }
 
   onUserclick(event: MouseEvent) {
     const value = this.commentInput.nativeElement.value;
-    this.addComment(value);
+    this.sendCommentEvent(value);
   }
 
-  onKeyup(event: KeyboardEvent) {
+  onUserKeyup(event: KeyboardEvent) {
     const value = (event.target as HTMLInputElement).value;
     if (event.key === '@') { // Fire anytime it detects the symbol and filtering happens at parent so it can be passed to popup.
       this.mentionEvent.emit(value);
     } else if (event.key === 'Enter') {
-      this.addComment(value);
+      this.sendCommentEvent(value);
     } else {
       this.mentionEvent.emit(value);
     }
@@ -61,7 +58,7 @@ export class CommentInputComponent {
 
   insertTagName(user: User) {
     const currentValue = this.commentInput.nativeElement.value;
-    const newValue = `@${user.name}`; // Value to add
+    const newValue = `@${user.name}`;
     const trimmmedValue = currentValue.substring(0, currentValue.lastIndexOf(' '))
     this.commentInput.nativeElement.value = trimmmedValue + newValue;
     this.commentInput.nativeElement.focus();

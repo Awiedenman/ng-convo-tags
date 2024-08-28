@@ -64,5 +64,6 @@ export class CommentInputComponent {
     const newValue = `@${user.name}`; // Value to add
     const trimmmedValue = currentValue.substring(0, currentValue.lastIndexOf(' '))
     this.commentInput.nativeElement.value = trimmmedValue + newValue;
+    this.commentInput.nativeElement.focus();
   }
 };

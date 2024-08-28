@@ -1,0 +1,7 @@
+<div class="comment-container">
+  <div class="input-container">
+    <input #commentInput class="comment-input" type="text" [formControl]="commentControl" (keyup)="onUserKeyup($event)"
+      placeholder="Type your comment..." (focus)="onFocus()" />
+    <button (click)="onUserclick($event)"></button>
+  </div>
+</div>

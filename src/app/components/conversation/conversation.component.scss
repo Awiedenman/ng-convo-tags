@@ -1,0 +1,39 @@
+:host {
+  display: flex;
+  flex-grow: 2;
+  width: 100%;
+
+  .conversation-container {
+    display: flex;
+    background-color: #fff;
+    width: 100%;
+    flex-direction: column;
+    height: 100vh;
+
+    >ul {
+      display: flex;
+      flex-direction: column;
+      padding: unset;
+      overflow-y: scroll;
+      height: 90vh;
+      flex-grow: 1;
+    }
+
+    .comment {
+      padding: 1rem;
+      border-bottom: #666 solid 1px;
+      list-style: none;
+
+      .timestamp {
+        font-weight: bold;
+        width: 3rem;
+        border-right: #666 1px solid;
+        padding-right: 1rem;
+      }
+
+      .commentText {
+        margin: 1rem
+      }
+    }
+  }
+}

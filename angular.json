@@ -91,6 +91,7 @@
               }
             ],
             "styles": [
+              "../node_modules/normalize.css/normalize.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -98,5 +99,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "ac6bdfd5-f5ca-4e74-b893-12bf975ef5f4"
   }
 }

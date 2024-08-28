@@ -1,0 +1,12 @@
+<div class="conversation-container" (click)="onClickOutside($event)">
+  <ul class="comments">
+    <li *ngFor="let comment of comments" class="comment">
+      <span class="timestamp">{{ comment.displayTime }}</span><span class="commentText">{{ comment.text }}</span>
+    </li>
+  </ul>
+  <app-user-popup (userSelected)="handleInsertUserOnClick($event)" [isOpen]="showUserPopup"
+    [filteredUsers]=filteredUsers (closePopupEvent)="closeUserPopup()">
+  </app-user-popup>
+  <app-comment-input [taggedUser]="taggedUser" (commentEvent)="addComment($event)" (mentionEvent)="filterUsers($event)"
+    (inputFocus)="handleInputFocus($event)" />
+</div>

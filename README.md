@@ -1,5 +1,7 @@
 # NgConvoTags
 
+This app is intended to allow a user to input comments, and trigger a popup to select users on the input of @.  If a user is selected from the popup, then they are tagged in the message.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.1.
 
 ## Development server

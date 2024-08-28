@@ -58,7 +58,7 @@ export class ConversationComponent implements OnInit {
 
     this.conversationService.createComment(newComment);
     this.comments = this.conversationService.getComments();
-    // would make api call to add this converstaion ID to the users array of tagged conversations
+    // This would make an api call to add this converstaion ID to the users array of tagged conversations
     this.notificationService.sendNotifcation(newComment)
     this.closeUserPopup();
   }
@@ -95,7 +95,6 @@ export class ConversationComponent implements OnInit {
           return user;
         }
         return;
-
       })
     } else {
       this.showUserPopup = false;

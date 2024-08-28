@@ -7,7 +7,6 @@
 
   main {
     display: flex;
-    // border-top: #000 5px solid;
     height: 100%;
 
     .left-side {
@@ -20,7 +19,6 @@
       display: flex;
       position: relative;
       flex-direction: column;
-      // width: 100%;
       flex: 1;
     }
   }

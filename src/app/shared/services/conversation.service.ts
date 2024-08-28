@@ -5,9 +5,9 @@ import { Comment } from '../models/comment.model';
   providedIn: 'root'
 })
 
+// these methods would be api calls if BE was present.
 export class ConversationService {
   private comments: Comment[] = [];
-  // would be api calls if BE was present.
   getComments(): Comment[] {
     return this.comments;
   }

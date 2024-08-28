@@ -6,7 +6,6 @@ import { User } from '../models/user.model';
   providedIn: 'root'
 })
 export class UserService {
-  //!  extract into mock data file.
   private users: User[] = [
     { name: 'Austin', photo: "/userimage_1.png", id: 1, taggedConversationIds: [] },
     { name: 'Courtney', photo: "/userimage_2.jpg", id: 2, taggedConversationIds: [] },

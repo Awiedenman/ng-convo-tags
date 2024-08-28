@@ -1,6 +1,6 @@
 export interface User {
   name: string;
-  id: number | null;
+  id: number;
   photo: string;
   taggedConversationIds: number[];
 }

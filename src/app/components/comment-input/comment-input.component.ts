@@ -17,7 +17,7 @@ export class CommentInputComponent {
   @Output() inputFocus = new EventEmitter<boolean>();
   @Input() taggedUser: User = {
     name: '',
-    id: null,
+    id: 0,
     photo: '',
     taggedConversationIds: []
   };

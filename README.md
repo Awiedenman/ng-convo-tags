@@ -1,6 +1,10 @@
 # NgConvoTags
 
-This app is intended to allow a user to input comments, and trigger a popup to select users on the input of @.  If a user is selected from the popup, then they are tagged in the message.
+This app is intended to allow for a user to input comments, and trigger a popup on the input of @ to allow for tagging users.
+
+When a user is tagged and a comment is submitted, the *comment* object is logged to the console. The user's ID could then be cross referenced against a list of conversation objects to to match the tagged User's id against an array of converstaion participant ids to alert the user.
+
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.1.
 

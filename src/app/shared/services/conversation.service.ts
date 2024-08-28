@@ -7,7 +7,7 @@ import { Comment } from '../models/comment.model';
 
 export class ConversationService {
   private comments: Comment[] = [];
-
+  // would be api calls.
   getComments(): Comment[] {
     return this.comments;
   }

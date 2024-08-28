@@ -6,6 +6,7 @@ import { CommentInputComponent } from '../comment-input/comment-input.component'
 import { UserService } from '../../shared/services/user.service';
 import { User } from '../../shared/models/user.model';
 import { UserPopupComponent } from '../user-popup/user-popup.component';
+import { NotificationService } from '../../shared/services/notification.service';
 
 @Component({
   selector: 'app-conversation',
@@ -21,12 +22,12 @@ export class ConversationComponent implements OnInit {
   filteredUsers: User[] = []
   taggedUser: User = {
     name: '',
+    photo: '',
     id: null,
     taggedConversationIds: []
-
   };
 
-  constructor(private conversationService: ConversationService, private userService: UserService) { }
+  constructor(private conversationService: ConversationService, private userService: UserService, private notificationService: NotificationService) { }
 
   ngOnInit(): void {
     this.comments = this.conversationService.getComments();
@@ -37,12 +38,15 @@ export class ConversationComponent implements OnInit {
     const newComment: Comment = {
       id: 2, //! use conversation service to return us the previous length of comments array and += 1;
       userId: 6, //! use the User service to return this value;
+      recipient: 2,
       timestamp: new Date(),
       text: comment,
     };
 
     this.conversationService.createComment(newComment); // Add new comment to state in service;
     this.comments = this.conversationService.getComments(); // Update the comments array;
+    // make api call to add this converstaion ID to the users array of tagged conversations
+    this.notificationService.sendNotifcation(newComment)
     this.closeUserPopup();
   }
 
@@ -84,6 +88,6 @@ export class ConversationComponent implements OnInit {
   }
 
   handleInsertUserOnClick(user: User) {
-    if (this.taggedUser) { console.log('insert' + user.name + 'here') }
+    this.taggedUser = user
   }
 };

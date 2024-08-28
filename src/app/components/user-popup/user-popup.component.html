@@ -1,7 +1,8 @@
 <div class="popup" *ngIf="isOpen">
   <ul class="user-list">
     <li class="user-item" *ngFor="let user of filteredUsers" (click)="selectUser($event, user)">
-      {{ "@" + user.name }}
+      <img [src]="user.photo" alt="user photo">
+      <p>{{ "@" + user.name }}</p>
     </li>
   </ul>
 </div>

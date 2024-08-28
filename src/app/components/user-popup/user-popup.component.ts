@@ -17,8 +17,6 @@ export class UserPopupComponent {
 
   selectUser(event: Event, user: User) {
     this.closePopupEvent.emit();
-    if ((event.target as HTMLElement).classList.contains('user-item')) {
-      this.userSelected.emit(user);
-    }
+    this.userSelected.emit(user);
   }
 }

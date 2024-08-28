@@ -1,21 +1,21 @@
 :host {
   display: flex;
-  flex-grow: 1;
+  flex-grow: 2;
   width: 100%;
 
   .conversation-container {
     display: flex;
     background-color: #fff;
     width: 100%;
-    // padding: 2rem;
     flex-direction: column;
+    height: 100vh;
 
     >ul {
       display: flex;
       flex-direction: column;
       padding: unset;
       overflow-y: scroll;
-      max-height: 75vh;
+      height: 90vh;
       flex-grow: 1;
     }
 

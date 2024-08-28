@@ -40,8 +40,9 @@ export class ConversationComponent implements OnInit {
 
     const amOrPm = hours >= 12 ? 'pm' : 'am';
     hours = hours % 12 || 12;
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
 
-    return `${hours}:${minutes} ${amOrPm}`
+    return `${hours}:${formattedMinutes} ${amOrPm}`
   }
 
   addComment(comment: string): void {

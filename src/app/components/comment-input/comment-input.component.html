@@ -1,5 +1,7 @@
-<div class="message-input-container">
-  <input class="message-input" type="text" [formControl]="commentControl" (keyup)="onKeyup($event)"
-    placeholder="Type your message..." (focus)="onFocus()" />
-  <!-- <button (click)="submitComment()">Send</button> -->
+<div class="comment-container">
+  <div class="input-container">
+    <input #commentInput class="comment-input" type="text" [formControl]="commentControl" (keyup)="onKeyup($event)"
+      placeholder="Type your comment..." (focus)="onFocus()" />
+    <button (click)="onUserclick($event)">Send</button>
+  </div>
 </div>

@@ -35,7 +35,7 @@
         align-self: flex-end;
         background-image: url('/send.png');
         background-repeat: no-repeat;
-        background-position: 55% 65%;
+        background-position: 60% 60%;
         background-size: 50%;
         cursor: pointer;
         margin-bottom: 0.2rem;
@@ -43,7 +43,7 @@
 
         &:hover {
           background-color: azure;
-          border: #F29422 solid 1px;
+          border: #F29422 solid 2px;
         }
       }
     }

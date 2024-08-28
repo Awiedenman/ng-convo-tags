@@ -23,7 +23,7 @@ export class ConversationComponent implements OnInit {
   taggedUser: User = {
     name: '',
     photo: '',
-    id: null,
+    id: 0,
     taggedConversationIds: []
   };
 
@@ -40,8 +40,9 @@ export class ConversationComponent implements OnInit {
 
     const amOrPm = hours >= 12 ? 'pm' : 'am';
     hours = hours % 12 || 12;
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
 
-    return `${hours}:${minutes} ${amOrPm}`
+    return `${hours}:${formattedMinutes} ${amOrPm}`
   }
 
   addComment(comment: string): void {
@@ -49,7 +50,7 @@ export class ConversationComponent implements OnInit {
     const newComment: Comment = {
       id: this.conversationService.getComments.length + 1,
       userId: 6, // hard coded bc as of now it is only me that can input comments/
-      recipient: 2,
+      recipient: this.taggedUser.id,
       timestamp: timestamp,
       displayTime: this.convertDateTime(timestamp),
       text: comment,
@@ -88,8 +89,6 @@ export class ConversationComponent implements OnInit {
     }))
 
     if (matchQueryPrefixList.length >= 1 && lastword.includes('@')) {
-      console.log('Input with @ detected:', lastword);
-
       this.showUserPopup = true;
       this.filteredUsers = this.users.filter((user: User) => {
         if (sanitizedQueryList.some((query) => user.name.toLowerCase().includes(query.toLowerCase()))) {

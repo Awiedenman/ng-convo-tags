@@ -23,6 +23,7 @@ export class CommentInputComponent {
   };
   @ViewChild('commentInput') commentInput!: ElementRef<HTMLInputElement>;
   commentControl = new FormControl('');
+  submitDisabled: boolean = true;
 
   constructor(private userService: UserService) { }
 
@@ -39,6 +40,7 @@ export class CommentInputComponent {
   onUserclick(event: MouseEvent) {
     const value = this.commentInput.nativeElement.value;
     this.sendCommentEvent(value);
+    this.submitDisabled = true;
   }
 
   onUserKeyup(event: KeyboardEvent) {
@@ -46,10 +48,15 @@ export class CommentInputComponent {
     if (event.key === '@') { // Fire anytime it detects the symbol and filtering happens at parent so it can be passed to popup.
       this.mentionEvent.emit(value);
     } else if (event.key === 'Enter') {
+      if (!value.length) return;
       this.sendCommentEvent(value);
     } else {
       this.mentionEvent.emit(value);
     }
+
+    if (value.length > 0) { this.submitDisabled = false; }
+    else { this.submitDisabled = true; }
+
   }
 
   onFocus() {

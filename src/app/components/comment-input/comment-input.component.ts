@@ -9,65 +9,64 @@ import { UserService } from '../../shared/services/user.service';
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './comment-input.component.html',
-  styleUrl: './comment-input.component.scss'
+  styleUrl: './comment-input.component.scss',
 })
 export class CommentInputComponent {
   @Output() commentEvent = new EventEmitter<string>();
   @Output() mentionEvent = new EventEmitter<string>();
-  @Output() inputFocus = new EventEmitter<boolean>();
+  @Output() inputFocusEvent = new EventEmitter<boolean>();
   @Input() taggedUser: User = {
     name: '',
     id: 0,
-    photo: '',
-    taggedConversationIds: []
+    photoURL: '',
+    taggedConversationIds: [],
   };
   @ViewChild('commentInput') commentInput!: ElementRef<HTMLInputElement>;
   commentControl = new FormControl('');
   submitDisabled: boolean = true;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {};
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['taggedUser']) this.insertTagName(this.taggedUser)
-  }
+    if (changes['taggedUser']) this.insertTagName(this.taggedUser);
+  };
 
   sendCommentEvent(value: string) {
     const users = this.userService.getUsers();
     this.commentEvent.emit(value);
     this.commentControl.setValue('');
-  }
+  };
 
-  onUserclick(event: MouseEvent) {
+  onUserClick(event: MouseEvent) {
     const value = this.commentInput.nativeElement.value;
     this.sendCommentEvent(value);
     this.submitDisabled = true;
-  }
+  };
 
   onUserKeyup(event: KeyboardEvent) {
     const value = (event.target as HTMLInputElement).value;
-    if (event.key === '@') { // Fire anytime it detects the symbol and filtering happens at parent so it can be passed to popup.
+    if (event.key === '@') {
       this.mentionEvent.emit(value);
     } else if (event.key === 'Enter') {
       if (!value.length) return;
       this.sendCommentEvent(value);
     } else {
       this.mentionEvent.emit(value);
-    }
+    };
 
     if (value.length > 0) { this.submitDisabled = false; }
-    else { this.submitDisabled = true; }
-
-  }
+    else { this.submitDisabled = true; };
+  };
 
   onFocus() {
-    this.inputFocus.emit(true);
-  }
+    this.inputFocusEvent.emit(true);
+  };
 
   insertTagName(user: User) {
     const currentValue = this.commentInput.nativeElement.value;
-    const newValue = `@${user.name}`;
+    const newValue = `@${user.name} `;
     const trimmmedValue = currentValue.substring(0, currentValue.lastIndexOf(' '))
     this.commentInput.nativeElement.value = trimmmedValue + newValue;
     this.commentInput.nativeElement.focus();
-  }
+  };
 };

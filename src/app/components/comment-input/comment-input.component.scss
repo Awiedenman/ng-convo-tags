@@ -6,8 +6,9 @@
   border-top: #000 solid 1px;
   padding-top: 1rem;
   background-color: #011939;
+  box-shadow: 5px 6px 20px #000;
 
-  .comment-container {
+  >div {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -19,7 +20,6 @@
 
       .comment-input {
         width: 100%;
-        // height: 100%;
         border-radius: 0.5rem;
         overflow: hidden;
         padding-left: 1rem;
@@ -29,21 +29,26 @@
       button {
         width: 4rem;
         height: 90%;
-        background-color: #F29422;
+        background-color: #f29422;
         border-radius: 10%;
         border: none;
         align-self: flex-end;
-        background-image: url('/send.png');
+        background-image: url('/paper-plane-navy.svg');
         background-repeat: no-repeat;
         background-position: 60% 60%;
-        background-size: 50%;
+        background-size: 80%;
         cursor: pointer;
         margin-bottom: 0.2rem;
         margin-left: 1rem;
 
-        &:hover {
-          background-color: azure;
-          border: #F29422 solid 2px;
+        &:hover:enabled {
+          background-color: #aabbaf;
+          border: #279e49 solid 2px;
+        }
+        &:disabled {
+          background-color: #888;
+          border: #444 solid 2px;
+          cursor: not-allowed
         }
       }
     }

@@ -5,34 +5,58 @@
 
   .conversation-container {
     display: flex;
+    flex-direction: column;
     background-color: #fff;
     width: 100%;
-    flex-direction: column;
     height: 100vh;
 
     >ul {
       display: flex;
       flex-direction: column;
-      padding: unset;
       overflow-y: scroll;
       height: 90vh;
       flex-grow: 1;
+      padding: unset;
     }
 
     .comment {
+      display: flex;
       padding: 1rem;
-      border-bottom: #666 solid 1px;
+      border-bottom: #555 solid 1px;
       list-style: none;
+
+      .user-info {
+        display: flex;
+        align-items: center;
+        width: 15%;
+        justify-content: space-around;
+
+        >img {
+          height: 35px;
+          width: 35px;
+          border: #555 solid 1px;
+          border-radius: 50%;
+          padding: 0.5rem;
+        };
+        >span {
+          border-right: #555 1px solid;
+          padding-right: 2rem;
+          font-weight: bold;
+        }
+      }
 
       .timestamp {
         font-weight: bold;
-        width: 3rem;
-        border-right: #666 1px solid;
-        padding-right: 1rem;
+        min-width: 6rem;
+        border-left: #555 1px solid;
+        padding: 0 1rem;
+        align-self: center;
       }
 
-      .commentText {
-        margin: 1rem
+      .comment-text {
+        margin: 1rem;
+        width: 70%;
+        align-self: center;
       }
     }
   }

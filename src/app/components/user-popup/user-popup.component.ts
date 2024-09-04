@@ -7,16 +7,16 @@ import { User } from '../../shared/models/user.model';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './user-popup.component.html',
-  styleUrl: './user-popup.component.scss'
+  styleUrl: './user-popup.component.scss',
 })
 export class UserPopupComponent {
   @Input() isOpen = false;
   @Input() filteredUsers: User[] = [];
   @Output() closePopupEvent = new EventEmitter<void>();
-  @Output() userSelected = new EventEmitter<User>();
+  @Output() userSelectedEvent = new EventEmitter<User>();
 
   selectUser(event: Event, user: User) {
     this.closePopupEvent.emit();
-    this.userSelected.emit(user);
-  }
-}
+    this.userSelectedEvent.emit(user);
+  };
+};

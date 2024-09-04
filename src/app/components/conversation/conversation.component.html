@@ -1,12 +1,24 @@
 <div class="conversation-container" (click)="onClickOutside($event)">
   <ul class="comments">
     <li *ngFor="let comment of comments" class="comment">
-      <span class="timestamp">{{ comment.displayTime }}</span><span class="commentText">{{ comment.text }}</span>
+      <span class="user-info">
+        <img [src]="commentCurrentUserInfo.photoURL" alt="User Image">
+        <span>{{commentCurrentUserInfo.name}}</span>
+      </span>
+      <span class="comment-text">{{ comment.text }}</span>
+      <span class="timestamp">{{ comment.displayTime }}</span>
     </li>
   </ul>
-  <app-user-popup (userSelected)="handleInsertUserOnClick($event)" [isOpen]="showUserPopup"
-    [filteredUsers]=filteredUsers (closePopupEvent)="closeUserPopup()">
-  </app-user-popup>
-  <app-comment-input [taggedUser]="taggedUser" (commentEvent)="addComment($event)" (mentionEvent)="filterUsers($event)"
-    (inputFocus)="handleInputFocus($event)" />
+  <app-user-popup
+    [isOpen]="showUserPopup"
+    [filteredUsers]=filteredUsers
+    (userSelectedEvent)="handleUserSelectedEvent($event)"
+    (closePopupEvent)="closeUserPopup()"
+  />
+  <app-comment-input
+    [taggedUser]="taggedUser"
+    (commentEvent)="addComment($event)"
+    (mentionEvent)="filterUsers($event)"
+    (inputFocusEvent)="handleInputFocusEvent($event)"
+  />
 </div>

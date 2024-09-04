@@ -1,5 +1,0 @@
-- [ ] : Type @  =>  press space  => press backspace => [ the user should be presented with the pop  up again]
-- [ ] : Comments should always be scrolled to last
-- [ ] :
-- [ ] :
-- [ ] :

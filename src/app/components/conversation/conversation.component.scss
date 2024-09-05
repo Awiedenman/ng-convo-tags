@@ -29,19 +29,18 @@
       .user-info {
         display: flex;
         align-items: center;
-        width: 15%;
-        justify-content: space-around;
 
         >img {
           height: 35px;
-          width: 35px;
+          min-width: 35px;
           border: #555 solid 1px;
           border-radius: 50%;
           padding: 0.5rem;
+          margin-right: 0.5rem;
         };
         >span {
           border-right: #555 1px solid;
-          padding-right: 2rem;
+          padding-right: 1rem;
           font-weight: bold;
         }
       }
@@ -55,7 +54,7 @@
       }
 
       .comment-text {
-        margin: 1rem;
+        padding: 1rem;
         width: 70%;
         align-self: center;
       }

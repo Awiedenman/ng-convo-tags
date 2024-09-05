@@ -45,17 +45,17 @@ export class CommentInputComponent {
 
   onUserKeyup(event: KeyboardEvent) {
     const value = (event.target as HTMLInputElement).value;
+    this.submitDisabled = false;
+
     if (event.key === '@') {
       this.mentionEvent.emit(value);
     } else if (event.key === 'Enter') {
       if (!value.length) return;
       this.sendCommentEvent(value);
+      this.submitDisabled = true;
     } else {
       this.mentionEvent.emit(value);
     };
-
-    if (value.length > 0) { this.submitDisabled = false; }
-    else { this.submitDisabled = true; };
   };
 
   onFocus() {
@@ -64,7 +64,7 @@ export class CommentInputComponent {
 
   insertTagName(user: User) {
     const currentValue = this.commentInput.nativeElement.value;
-    const newValue = `@${user.name} `;
+    const newValue = ` @${user.name} `;
     const trimmmedValue = currentValue.substring(0, currentValue.lastIndexOf(' '))
     this.commentInput.nativeElement.value = trimmmedValue + newValue;
     this.commentInput.nativeElement.focus();
